@@ -1,0 +1,176 @@
+.search {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 70px 0;
+    padding: 74px 0 0px;
+    border-bottom: 1px solid #424242;
+    flex-direction: column;
+  }
+  
+  .search__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 1140px;
+    margin: 0 0 24px;
+    padding: 6px;
+    /* border: 1px solid rgba(170, 170, 170, .2); */
+    border-radius: 50px;
+  }
+  
+  .search__input {
+    height: 50px;
+    width: 100%;
+    padding: 0 15px;
+    margin: 0 10px 0 0;
+    outline: none;
+    border: none;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 18px;
+    background: #2F2F2F;
+    border-radius: 6px;
+    color: #fff;
+  }
+  
+  /* .search__input:focus {
+    width: 90%;
+    outline: 1px solid black;
+    border-radius: 50px;
+  } */
+  /* ------------------------------------ */
+
+  .search__input::placeholder {
+    color: #8B8B8B;
+  }
+  
+  .search__button {
+    width: 44px;
+    height: 44px;
+    padding: 8px 12px;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    /* background-color: #3456f3; */
+    color: #fff;
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 18px;
+    transition: opacity .2s linear;
+    background-image: url(../../images/search.svg);
+  }
+  
+  .search__button:hover {
+    opacity: .6;
+    cursor: pointer;
+  }
+  
+  .search__toggle {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 0 40px;
+  }
+  
+  .search__films {
+    color: #fff;
+    margin: 0 0 0 12px;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 18px;
+  }
+  
+  .search__tumbler {
+    position: relative;
+    display: inline-block;
+    width: 36px;
+    height: 14px;
+    cursor: pointer;
+    transition: opacity .2s linear;
+  }
+
+  .search__tumbler:hover {
+    opacity: .6;
+    cursor: pointer;
+  }
+  
+  .search__checkbox {
+    display: none;
+  }
+  
+  .search__slider {
+    position: absolute;
+    inset: 0;
+    background-color: #3DDC84;
+    border-radius: 16px;
+    transition: .6s;
+    transform: scale(-1, -1);
+  }
+  
+  .search__slider::before {
+    position: absolute;
+    content: '';
+    height: 10px;
+    width: 10px;
+    left: 1px;
+    bottom: 2px;
+    border-radius: 50%;
+    background-color: #FFF;
+  }
+  
+  .search__checkbox:checked + .search__slider {
+    background-color: #343434;
+  }
+  
+  .search__checkbox:checked + .search__slider::before {
+    transform: translateX(22px);
+    background-color: #A0A0A0;
+  }
+  
+  @media screen and (max-width: 1300px) {
+    .search {
+      flex-direction: column;
+      margin: 0 30px 0;
+      padding: 74px 0 17px;
+    }
+  
+    .search__container {
+      width: 98%;
+      padding: 6px;
+      margin: 0 0 34px;
+    }
+  
+    .search__input {
+      padding: 0 11px;
+    }
+  
+    .search__toggle {
+      margin: 0 0 24px;
+    }
+  }
+  
+  @media screen and (max-width: 800px) {
+    .search {
+      padding: 72px 0 0 0;
+      margin: 0 15px 0;
+    }
+  
+    .search__container {
+      margin: 0 0 36px;
+    }
+  
+    .search__input {
+      padding: 0 8px;
+      font-size: 11px;
+    }
+  
+    .search__toggle {
+      margin: 0 0 42px;
+    }
+  
+    .search__films {
+      font-size: 11px;
+    }
+  }
