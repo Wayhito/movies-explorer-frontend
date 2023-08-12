@@ -183,7 +183,7 @@
   }
 }
 
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 530px) {
   .header {
       padding: 18px 30px;
   }
@@ -209,7 +209,7 @@
   }
 }
 
-@media screen and (min-width: 1300px) {
+@media screen and (min-width: 1250px) {
   .header {
       padding: 18px 70px;
       grid-template-columns: 1fr 1fr 1fr;

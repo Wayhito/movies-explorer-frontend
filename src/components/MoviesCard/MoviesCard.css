@@ -93,7 +93,7 @@
     border-radius: 4px;
   }
   
-  @media screen and (max-width: 800px) {
+  @media screen and (max-width: 1250px) {
     .card__image {
       width: 339px;
       height: 190px;
@@ -104,7 +104,7 @@
     }
   }
   
-  @media screen and (max-width: 550px) {
+  @media screen and (max-width: 750px) {
     .card__title {
       font-size: 12px;
       line-height: 17px;

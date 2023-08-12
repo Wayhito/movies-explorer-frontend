@@ -8,12 +8,12 @@ import TestCards from '../../utils/TestCards';
 const Movies = ({ openPopup }) => {
 
   return (
-    <div className="movies">
+    <main className="movies">
       <SearchForm />
       <MoviesCardList 
       cards={TestCards} 
       buttonMore={true} />
-    </div>
+    </main>
   );
 };
 

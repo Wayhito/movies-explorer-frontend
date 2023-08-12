@@ -1,13 +1,15 @@
-.cards {
-    margin: 0 70px 0;
+  .cards {
+    margin: 0 auto 0 auto;
     padding: 10px 0 50px;
+    width: 93%;
   }
+
   .cards__list {
     display: grid;
     justify-content: center;
     justify-items: start;
-    grid-template-columns: repeat(3, minmax(270px, 1fr));
-    gap: 23px 20px;
+    grid-template-columns: repeat(3, minmax(300px, 1fr));
+    gap: 23px 30px;
     margin: 0;
     padding: 70px 0 0;
     box-sizing: border-box;
@@ -49,32 +51,24 @@
     cursor: pointer;
   }
   
-  @media all and (max-width: 1300px) {
+  @media all and (max-width: 1250px) {
     .cards__list {
-      grid-template-columns: repeat(2, minmax(330px, 1fr));
+      grid-template-columns: repeat(2, minmax(300px, 1fr));
     }
   }
 
-  @media all and (max-width: 900px) {
-    .cards {
-      margin: 0 30px 0;
-    }
-  
+  @media all and (max-width: 700px) {
     .cards__list {
       justify-items: center;
-      grid-template-columns: repeat(1, minmax(330px, 1fr));
-      gap: 15px 20px;
+      grid-template-columns: repeat(1, minmax(300px, 1fr));
+      gap: 15px 30px;
     }
   }
   
   @media all and (max-width: 550px) {
-    .cards {
-      margin: 0 10px 0;
-    }
-  
     .cards__list {
       padding: 40px 0 0;
-      gap: 18px 20px;
+      gap: 18px 30px;
     }
   
     .cards__button-container {

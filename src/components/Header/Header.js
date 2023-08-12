@@ -24,7 +24,7 @@ function Header({ loggedIn }) {
         {!loggedIn && (
           <>
             <Link to="/">
-              <img className="header__logo" src={logo} alt="логотип" />
+              <img className="header__logo hover" src={logo} alt="логотип" />
             </Link>
             <ul className="header__links">
               <li className="header__link-item">
@@ -46,7 +46,7 @@ function Header({ loggedIn }) {
         {loggedIn && (
           <>
             <Link to="/">
-              <img className="header__logo" src={logo} alt="логотип" />
+              <img className="header__logo hover" src={logo} alt="логотип" />
             </Link>
             <nav className="header__links-movies">
               <NavLink exact to="/movies" className="header__link header__link_auth hover" activeClassName="header__link_active">
@@ -72,7 +72,7 @@ function Header({ loggedIn }) {
               <button
                 onClick={handleActiveBurger}
                 type="button"
-                className="burger-menu__button-close"
+                className="burger-menu__button-close hover"
               ></button>
               <nav className="burger-menu__container">
                 <ul className="burger-menu__list">
