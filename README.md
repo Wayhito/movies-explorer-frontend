@@ -8,5 +8,5 @@ movies.wayhito.nomoreparties.sbs
 https://www.figma.com/file/sBaLXEqYQKAh2U0wph4dYa/dark-2?type=design&node-id=891%3A3857&mode=dev
 
 
-## Картинки из макета для карточек сохранены и оптимизированы при помощи сайта 
+## Картинки из макета для карточек сохранены и оптимизированы при помощи сайта:
 https://new.fastpic.org
