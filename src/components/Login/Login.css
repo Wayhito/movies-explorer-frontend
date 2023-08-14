@@ -1,0 +1,9 @@
+.form__button {
+    margin: 152px 0 17px;
+}
+
+@media all and (max-width: 550px) {
+    .form__button {
+        margin: 244px 0 17px;
+    }
+}

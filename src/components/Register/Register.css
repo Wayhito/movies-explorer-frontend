@@ -1,0 +1,24 @@
+/* .form__item + .form__item_registration {
+    margin: 0;
+}
+*/
+
+.form__items {
+    margin-bottom: -2px;
+} 
+
+.form__button.form__button_registration {
+    margin: 65px 0 17px;
+}
+
+@media all and (max-width: 800px) {
+    .form__button.form__button_registration {
+        margin: 65px 0 17px;
+    }
+}
+
+@media all and (max-width: 550px) {
+    .form__button.form__button_registration {
+        margin: 150px 0 17px;
+    }
+}

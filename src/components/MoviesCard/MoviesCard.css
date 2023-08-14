@@ -1,0 +1,117 @@
+.card {
+    padding: 0;
+    margin: auto;
+    position: relative;
+  }
+  
+  .card__image {
+    width: 360px;
+    height: 201px;
+    border-radius: 10px;
+  }
+  
+  .card__element {
+    display: flex;
+    justify-content: space-between;
+    min-height: 44px;
+    margin: 10.8px 2px 0 0;
+  }
+  
+  .card__title {
+    max-width: 220px;
+    margin: 0 0 0 10px;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 16px;
+    color: #fff;
+  }
+  
+  .card__buttons {
+    margin: -2px 0 0;
+    position: absolute;
+    right: 35px;
+    top: 15px;
+  }
+  
+  .card__button {
+    /* margin: -140px 0 0 240px; */
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    padding: 0;
+    border: none;
+    border-radius: 36px;
+    transition: opacity .2s linear;
+  }
+  
+  .card__button:hover {
+    opacity: .6;
+    cursor: pointer;
+  }
+  
+  .card__button_inactive {
+    margin-left: -50px;
+    background-color: transparent;
+    color: #FFF;
+    text-align: center;
+    font-family: Inter;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 9px;
+    width: 72px;
+    height: 21px;
+    background-image: url(../../images/Save.svg);
+  }
+  
+  .card__button_active {
+    font-size: 1px;
+    color: transparent;
+    width: 21px;
+    height: 21px;
+    background: url(../../images/Saved.svg);
+  }
+  
+  .card__button_delete {
+    width: 21px;
+    height: 21px;
+    background: url(../../images/Delete.svg) center no-repeat;
+  }
+  
+  /* .card__button_delete:hover {
+  } */
+  
+  .card__duration {
+    width: 44px;
+    height: 14px;
+    margin: 0.4px 10px 14.5px;
+    padding: 4px 0px 0 8px;
+    background: #2F2F2F;
+    color: #a0a0a0;
+    font-size: 11px;
+    line-height: 13px;
+    border-radius: 4px;
+  }
+  
+  @media screen and (max-width: 1250px) {
+    .card__image {
+      width: 339px;
+      height: 190px;
+    }
+  
+    .card__title {
+      max-width: 290px;
+    }
+  }
+  
+  @media screen and (max-width: 750px) {
+    .card__title {
+      font-size: 12px;
+      line-height: 17px;
+    }
+  
+    .card__image {
+      width: 300px;
+      height: 168px;
+    }
+  }
