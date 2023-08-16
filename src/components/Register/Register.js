@@ -1,5 +1,4 @@
 import '../Form/Form.css';
-import './Register.css';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../images/logo.svg';
@@ -30,6 +29,7 @@ function Register({ onRegister }) {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
+
     onRegister(inputValues);
   };
 
@@ -42,13 +42,13 @@ function Register({ onRegister }) {
         <h2 className="form__title">Добро пожаловать!</h2>
         <form className="form__inputs" onSubmit={handleSubmit}>
           <div className="form__items">
-            <label className="form__item form__item_registration">
+            <label className="form__item">
               <p className="form__item-text">Имя</p>
-              <input className="form__field" name="name" maxLength="40" placeholder="Введите имя" value={inputValues.name || ''} onChange={handleInputChange} required />
+              <input className="form__field" name="name" placeholder="Введите имя" value={inputValues.name || ''} onChange={handleInputChange} required />
               <p className="form__error">Что-то пошло не так...</p>
             </label>
 
-            <label className="form__item form__item_registration">
+            <label className="form__item">
               <p className="form__item-text">E-mail</p>
               <input
                 className={`form__field ${errors.email ? 'form__field_color-error' : ''}`}
@@ -62,7 +62,7 @@ function Register({ onRegister }) {
               <p className={`form__error ${errors.email ? 'form__error-display' : ''}`}>{errors.email}</p>
             </label>
 
-            <label className="form__item form__item_registration">
+            <label className="form__item">
               <p className="form__item-text">Пароль</p>
               <input
                 className={`form__field ${errors.password ? 'form__field_color-error' : ''}`}
@@ -77,7 +77,7 @@ function Register({ onRegister }) {
               <p className={`form__error ${errors.password ? 'form__error-display' : ''}`}>{errors.password}</p>
             </label>
           </div>
-          <button className={`form__button ${isValid ? "" : "form__button_disabled"} form__button_registration`} type="submit" disabled={!isValid ? true : ''}>Зарегистрироваться</button>
+          <button className={`form__button ${isValid ? "" : "form__button_disabled"}`} type="submit" disabled={!isValid ? true : ''}>Зарегистрироваться</button>
         </form>
         <p className="form__text">
           Уже зарегистрированы?
