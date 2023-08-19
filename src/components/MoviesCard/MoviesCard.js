@@ -41,19 +41,21 @@ const MoviesCard = ({ film, savedMoviesToggle, filmsSaved }) => {
       <a className="card__image-content" href={pathname === '/saved-movies' ? film.trailer : film.trailerLink} target="_blank"  rel="noreferrer">
         <img className="card__image" src={pathname === '/saved-movies' ? `${film.image}` : `https://api.nomoreparties.co${film.image.url}`} alt={film.nameRU}></img>
       </a>
+
+      <div className="card__buttons">
+
+        {pathname === '/saved-movies' ? (
+          <button type="button" className="card__button card__button_delete" onClick={handleFavoriteDelete} />
+        ) : (
+          <button type="button" className={`card__button card__button${favorite ? '_active' : '_inactive'}`} onClick={handleFavoriteToogle} />
+        )}
+        
+      </div>
+
       <div className="card__element">
         <p className="card__title">{film.nameRU}</p>
-        <div className="card__buttons">
-
-          {pathname === '/saved-movies' ? (
-            <button type="button" className="card__button card__button_delete" onClick={handleFavoriteDelete} />
-          ) : (
-            <button type="button" className={`card__button card__button${favorite ? '_active' : '_inactive'}`} onClick={handleFavoriteToogle} />
-          )}
-          
-        </div>
+        <p className="card__duration">{getMovieDuration(film.duration)}</p>
       </div>
-      <p className="card__duration">{getMovieDuration(film.duration)}</p>
     </li>
   );
 };

@@ -15,11 +15,12 @@
     justify-content: space-between;
     min-height: 44px;
     margin: 10.8px 2px 0 0;
+    max-width: 345px;
   }
   
   .card__title {
     max-width: 220px;
-    margin: 0 0 0 10px;
+    margin: 0 10px 0 10px;
     font-size: 13px;
     font-weight: 500;
     line-height: 16px;
@@ -82,15 +83,16 @@
   } */
   
   .card__duration {
-    width: 44px;
+    width: 50px;
     height: 14px;
-    margin: 0.4px 10px 14.5px;
-    padding: 4px 0px 0 8px;
+    margin: 0.4px 10px 14.5px 0;
+    padding: 2px 0px 2px 0px;
     background: #2F2F2F;
     color: #a0a0a0;
     font-size: 11px;
     line-height: 13px;
     border-radius: 4px;
+    text-align: center;
   }
   
   @media screen and (max-width: 1250px) {
@@ -100,7 +102,7 @@
     }
   
     .card__title {
-      max-width: 290px;
+      max-width: 250px;
     }
   }
   
