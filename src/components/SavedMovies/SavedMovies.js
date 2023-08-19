@@ -16,32 +16,38 @@ const SavedMovies = ({ openPopup }) => {
   const [filmsWithTumbler, setFilmsWithTumbler] = useState([]);
   const [filmsShowedWithTumbler, setFilmsShowedWithTumbler] = useState([]);
 
-  useEffect(() => 
+  useEffect(() => {
+    console.log("до функции getFilmsFunc, но Эффект отработал");
     async function getFilmsFunc() {
-      console.log('savedMovies функция отработала при useEffect');
-      const localStorageFilms = localStorage.getItem('savedFilms');
-    if (localStorageFilms) {
-      setFilms(JSON.parse(localStorageFilms));
-      const localStorageFilmsTumbler = localStorage.getItem('savedFilmsTumbler');
-      const localStorageFilmsInputSearch = localStorage.getItem('savedFilmsInputSearch');
+      console.log("savedMovies функция отработала при useEffect");
+      const localStorageFilms = localStorage.getItem("savedFilms");
+      if (localStorageFilms) {
+        setFilms(JSON.parse(localStorageFilms));
+        const localStorageFilmsTumbler =
+          localStorage.getItem("savedFilmsTumbler");
+        const localStorageFilmsInputSearch = localStorage.getItem(
+          "savedFilmsInputSearch",
+        );
   
-      if (localStorageFilmsTumbler) {
-        setFilmsTumbler(localStorageFilmsTumbler === 'true');
-      }
-      if (localStorageFilmsInputSearch) {
-        setFilmsInputSearch(localStorageFilmsInputSearch);
-      }
-    } else {
-      try {
-        const data = await mainApi.getMovies();
-        setFilms(data);
-        setFilmsShowed(data);
-      } catch (err) {
-        openPopup(`Ошибка сервера ${err}`);
+        if (localStorageFilmsTumbler) {
+          setFilmsTumbler(localStorageFilmsTumbler === "true");
+        }
+        if (localStorageFilmsInputSearch) {
+          setFilmsInputSearch(localStorageFilmsInputSearch);
+        }
+      } else {
+        try {
+          const data = await mainApi.getMovies();
+          setFilms(data);
+          setFilmsShowed(data);
+        } catch (err) {
+          openPopup(`Ошибка сервера ${err}`);
+        }
       }
     }
+    getFilmsFunc();
   }, [openPopup]);
-  
+
   async function handleGetMovies(inputSearch, tumbler) {
     setErrorText('');
     setPreloader(true);
