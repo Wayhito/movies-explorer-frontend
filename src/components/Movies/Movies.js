@@ -116,7 +116,6 @@ const Movies = ({ openPopup }) => {
   async function savedMoviesToggle(film, favorite) {
     if (favorite) {
       const objFilm = {
-        owner: localStorage.getItem('userId'),
         image: 'https://api.nomoreparties.co' + film.image.url,
         trailerLink: film.trailerLink,
         thumbnail: 'https://api.nomoreparties.co' + film.image.url,

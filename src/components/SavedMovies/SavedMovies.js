@@ -67,8 +67,6 @@ const SavedMovies = ({ openPopup }) => {
   useEffect(() => 
     async function getFilmsFunc() {
       const localStorageFilms = localStorage.getItem('savedFilms');
-      console.log(filmsWithTumbler);
-      console.log(filmsShowedWithTumbler);
     if (localStorageFilms) {
       setFilms(JSON.parse(localStorageFilms));
       const localStorageFilmsTumbler = localStorage.getItem('savedFilmsTumbler');
