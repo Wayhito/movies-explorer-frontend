@@ -17,12 +17,12 @@ const Movies = ({ openPopup }) => {
   const [filmsShowed, setFilmsShowed] = useState(null);
   const [filmsWithTumbler, setFilmsWithTumbler] = useState([]);
   const [filmsShowedWithTumbler, setFilmsShowedWithTumbler] = useState([]);
-
+  
   useEffect(() => {
     setMoviesCount(getMoviesCount());
     const handlerResize = () => setMoviesCount(getMoviesCount());
     window.addEventListener('resize', handlerResize);
-
+    handleGetMovies();
     return () => {
       window.removeEventListener('resize', handlerResize);
     };
@@ -61,7 +61,7 @@ const Movies = ({ openPopup }) => {
     localStorage.setItem('filmsTumbler', false);
 
     if (!inputSearch) {
-      setErrorText('Нужно ввести ключевое слово');
+      setErrorText('Начните поиск. Введите ключевое слово');
       return false;
     }
 
@@ -81,7 +81,7 @@ const Movies = ({ openPopup }) => {
       setFilmsWithTumbler(filterData);
     } catch (err) {
       setErrorText(
-        'Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз'
+        'Во время запроса произошла ошибка.'
       );
 
       setFilms([]);
@@ -116,10 +116,11 @@ const Movies = ({ openPopup }) => {
   async function savedMoviesToggle(film, favorite) {
     if (favorite) {
       const objFilm = {
+        owner: localStorage.getItem('userId'),
         image: 'https://api.nomoreparties.co' + film.image.url,
-        trailer: film.trailerLink,
+        trailerLink: film.trailerLink,
         thumbnail: 'https://api.nomoreparties.co' + film.image.url,
-        movieId: film.id,
+        movieId: `${film.id}`,
         country: film.country || 'Неизвестно',
         director: film.director,
         duration: film.duration,

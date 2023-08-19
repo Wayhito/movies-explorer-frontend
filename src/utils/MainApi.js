@@ -2,9 +2,8 @@ class MainApi {
     constructor(config) {
       this._address = config.address;
       this._headers = config.headers;
-      console.log(config);
     }
-  
+
     _handleRes(res) {
       if (res.ok) {
         return res.json();
@@ -45,25 +44,26 @@ class MainApi {
       .then(this._handleRes);
     }
   
-    getUserInfo() {
+    getUserInfo(token) {
       return fetch(`${this._address}/users/me`, {
         method: 'GET',
-        credentials: "include",
-        headers: this._headers,
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
       })
       .then(this._handleRes);
     }
   
     updateUserInfo(data) {
-      return fetch(`${this._address}`, {
+      return fetch(`${this._address}/users/me`, {
         method: 'PATCH',
         headers: this._headers,
         body: JSON.stringify({
           name: data.name,
           email: data.email,
         }),
-      })
-      .then(this._handleRes);
+      }).then(this._handleRes);
     }
   
     getMovies() {
@@ -93,14 +93,13 @@ class MainApi {
   
     updateToken() {
       this._headers.Authorization = `Bearer ${localStorage.getItem('jwt')}`;
-      console.log(`Bearer ${localStorage.getItem('jwt')}`);
     }
   }
   
   const mainApi = new MainApi({
     address: 'https://api.movies.wayhito.nomoreparties.sbs',
     headers: {
-      'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
+      Authorization: `Bearer ${localStorage.getItem('jwt')}`,
       'Content-Type': 'application/json',
     },
   });

@@ -27,13 +27,13 @@ function App() {
   const history = useHistory();
 
   useEffect(() => {
-    getUserInfo();
+    const jwtToken = Token.getToken();
+    getUserInfo(jwtToken);
   }, []);
 
-  function getUserInfo() {
-    MainApi.getUserInfo()
+  function getUserInfo(jwt) {
+    MainApi.getUserInfo(jwt)
       .then((data) => {
-        console.log('1', data);
         setCurrentUser(data);
         setLoggedIn(true);
       })
@@ -51,7 +51,6 @@ function App() {
         if (res._id) {
           setPopupTitle('Вы успешно зарегистрировались!');
           setIsOpenPopup(true);
-          localStorage.setItem('userId', res._id);
           onLogin(formData);
         }
       })
@@ -63,13 +62,12 @@ function App() {
 
   function onLogin(formData) {
     MainApi.loginUser(formData)
-      .then(({jwt:token}) => {
-        if (token) {
-          console.log(token);
-          Token.saveToken(token);
+      .then(({jwt}) => {
+        if (jwt) {
+          Token.saveToken(jwt);
           MainApi.updateToken();
           setLoggedIn(true);
-          getUserInfo();
+          getUserInfo(jwt);
           history.push('/movies');
         }
       })

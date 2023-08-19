@@ -1,4 +1,3 @@
-/* eslint-disable eqeqeq */
 import './MoviesCard.css';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
