@@ -90,12 +90,8 @@ function App() {
   function onSignOut() {
     Token.removeToken();
     setLoggedIn(false);
-    localStorage.removeItem('films');
-    localStorage.removeItem('filmsTumbler');
-    localStorage.removeItem('filmsInputSearch');
-    localStorage.removeItem('savedFilms');
-    localStorage.removeItem('savedFilmsTumbler');
-    localStorage.removeItem('savedFilmsInputSearch');
+    localStorage.clear();
+    history.push('/');
   }
 
   return (

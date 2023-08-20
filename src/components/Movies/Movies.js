@@ -22,7 +22,11 @@ const Movies = ({ openPopup }) => {
     setMoviesCount(getMoviesCount());
     const handlerResize = () => setMoviesCount(getMoviesCount());
     window.addEventListener('resize', handlerResize);
-    handleGetMovies();
+    //handleGetMovies();
+
+    const prevInput = localStorage.getItem('filmsInputSearch');
+    handleGetMovies(prevInput);
+
     return () => {
       window.removeEventListener('resize', handlerResize);
     };
@@ -32,10 +36,9 @@ const Movies = ({ openPopup }) => {
     let countCards;
     const clientWidth = document.documentElement.clientWidth;
     const MoviesCountConfig = {
-      '1200': [12, 4],
-      '900': [9, 3],
-      '768': [8, 2],
-      '240': [5, 2],
+      '1250': [12, 3],
+      '700': [8, 2],
+      '550': [5, 1],
     };
 
     Object.keys(MoviesCountConfig)
@@ -69,12 +72,15 @@ const Movies = ({ openPopup }) => {
     setPreloader(true);
 
     try {
-      const data = await moviesApi.getMovies();
+      await gettingSomeFilms()
+      const data = JSON.parse(localStorage.getItem('LoadedMovies'));
       let filterData = data.filter(({ nameRU }) => nameRU.toLowerCase().includes(inputSearch.toLowerCase()));
       localStorage.setItem('films', JSON.stringify(filterData));
       localStorage.setItem('filmsInputSearch', inputSearch);
+      localStorage.setItem('prevInput', inputSearch);
 
       const spliceData = filterData.splice(0, MoviesCount[0]);
+
       setFilmsShowed(spliceData);
       setFilms(filterData);
       setFilmsShowedWithTumbler(spliceData);
@@ -87,9 +93,22 @@ const Movies = ({ openPopup }) => {
       setFilms([]);
       localStorage.removeItem('films');
       localStorage.removeItem('filmsTumbler');
-      localStorage.removeItem('filmsInputSearch');
+      //localStorage.removeItem('filmsInputSearch');
     } finally {
       setPreloader(false);
+    }
+  }
+
+  //Добавлю дополнительную функцию, чтобы каждый раз не совершать запросы
+  async function gettingSomeFilms() {
+    //Ищем фильмы в хранилище
+    const data = JSON.parse(localStorage.getItem('LoadedMovies'));
+    //Если фильмов в хранилище нет, делаем один запрос на получение фильмов с API
+    if (!data) {
+      await moviesApi.getMovies()
+      .then((LoadedFilms) => {
+        localStorage.setItem('LoadedMovies', JSON.stringify(LoadedFilms));
+      })
     }
   }
 

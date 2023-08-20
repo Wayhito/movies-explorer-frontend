@@ -17,50 +17,32 @@ const SavedMovies = ({ openPopup }) => {
   const [filmsShowedWithTumbler, setFilmsShowedWithTumbler] = useState([]);
 
   useEffect(() => {
-    console.log("до функции getFilmsFunc, но Эффект отработал");
     async function getFilmsFunc() {
-      console.log("savedMovies функция отработала при useEffect");
-      const localStorageFilms = localStorage.getItem("savedFilms");
-      if (localStorageFilms) {
-        setFilms(JSON.parse(localStorageFilms));
-        const localStorageFilmsTumbler =
-          localStorage.getItem("savedFilmsTumbler");
-        const localStorageFilmsInputSearch = localStorage.getItem(
-          "savedFilmsInputSearch",
-        );
-  
-        if (localStorageFilmsTumbler) {
-          setFilmsTumbler(localStorageFilmsTumbler === "true");
-        }
-        if (localStorageFilmsInputSearch) {
-          setFilmsInputSearch(localStorageFilmsInputSearch);
-        }
-      } else {
-        try {
-          const data = await mainApi.getMovies();
-          setFilms(data);
-          setFilmsShowed(data);
-        } catch (err) {
-          openPopup(`Ошибка сервера ${err}`);
-        }
+      try {
+        const data = await mainApi.getMovies();
+        setFilms(data);
+        setFilmsShowed(data);
+      } catch (err) {
+        openPopup(`Ошибка сервера ${err}`);
       }
-    }
+    };
     getFilmsFunc();
-  }, [openPopup]);
+    }, [openPopup]);
 
   async function handleGetMovies(inputSearch, tumbler) {
     setErrorText('');
     setPreloader(true);
     
     try {
-      const data = films;
+      //const data = films;
+      const data = await mainApi.getMovies();
       let filterData = data.filter(({ nameRU }) => nameRU.toLowerCase().includes(inputSearch.toLowerCase()));
-      
       if (tumbler) filterData = filterData.filter(({ duration }) => duration <= 40);
       
       setFilmsShowed(filterData);
 
       if (inputSearch) {
+        localStorage.setItem('InputText', inputSearch);
         localStorage.setItem('savedFilms', JSON.stringify(filterData));
         localStorage.setItem('savedFilmsTumbler', tumbler);
         localStorage.setItem('savedFilmsInputSearch', inputSearch);
@@ -71,7 +53,7 @@ const SavedMovies = ({ openPopup }) => {
       }
     } catch (err) {
       setErrorText(
-        'Произошла ошибка во время запроса'
+        'Фильмов по запросу нет или произошла ошибка.'
       );
 
       setFilms([]);
@@ -90,6 +72,8 @@ const SavedMovies = ({ openPopup }) => {
         const newFilms = await mainApi.getMovies();
         setFilmsShowed(newFilms);
         setFilms(newFilms);
+        const InputSearchText = localStorage.getItem('inputText');
+        handleGetMovies(InputSearchText);
       } catch (err) {
         openPopup('Ошибка удаления');
       }
