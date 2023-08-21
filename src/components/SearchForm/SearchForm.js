@@ -34,9 +34,7 @@ const SearchForm = ({ handleGetMovies, filmsTumbler, filmsInputSearch, handleGet
       <div className="search__toggle">
         <p className="search__films">Короткометражки</p>
         <label className="search__tumbler">
-
           <input className="search__checkbox" type="checkbox" value={tumbler} checked={tumbler} onChange={handleTumblerChange} />
-          
           <span className="search__slider" />
         </label>
       </div>

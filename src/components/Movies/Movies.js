@@ -24,8 +24,8 @@ const Movies = ({ openPopup }) => {
     window.addEventListener('resize', handlerResize);
     //handleGetMovies();
 
-    const prevInput = localStorage.getItem('filmsInputSearch');
-    handleGetMovies(prevInput);
+    // const prevInput = localStorage.getItem('filmsInputSearch');
+    // handleGetMovies(prevInput);
 
     return () => {
       window.removeEventListener('resize', handlerResize);
@@ -38,7 +38,7 @@ const Movies = ({ openPopup }) => {
     const MoviesCountConfig = {
       '1250': [12, 3],
       '700': [8, 2],
-      '550': [5, 1],
+      '550': [5, 2],
     };
 
     Object.keys(MoviesCountConfig)
@@ -129,6 +129,7 @@ const Movies = ({ openPopup }) => {
     localStorage.setItem('films', JSON.stringify(filterDataShowed.concat(filterData)));
     localStorage.setItem('filmsTumbler', tumbler);
     setFilmsShowed(filterDataShowed);
+
     setFilms(filterData);
   }
 

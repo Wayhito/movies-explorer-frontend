@@ -4,7 +4,8 @@ import MoviesCard from '../MoviesCard/MoviesCard';
 
 const MoviesCardList = ({ films, savedMoviesToggle, filmsSaved, filmsRemains, handleMore }) => {
   const { pathname } = useLocation();
-
+  //console.log(films);
+  
   return (
     <section className="cards">
       {films.length > 0 ? (

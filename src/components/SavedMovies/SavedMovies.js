@@ -17,7 +17,10 @@ const SavedMovies = ({ openPopup }) => {
   const [filmsShowedWithTumbler, setFilmsShowedWithTumbler] = useState([]);
 
   useEffect(() => {
+    //Удалим прошлый запрос т.к. он уже не нужен.
+    localStorage.removeItem('InputText');
     async function getFilmsFunc() {
+
       try {
         const data = await mainApi.getMovies();
         setFilms(data);
@@ -27,7 +30,7 @@ const SavedMovies = ({ openPopup }) => {
       }
     };
     getFilmsFunc();
-    }, [openPopup]);
+  }, [openPopup]);
 
   async function handleGetMovies(inputSearch, tumbler) {
     setErrorText('');
@@ -37,6 +40,7 @@ const SavedMovies = ({ openPopup }) => {
       //const data = films;
       const data = await mainApi.getMovies();
       let filterData = data.filter(({ nameRU }) => nameRU.toLowerCase().includes(inputSearch.toLowerCase()));
+
       if (tumbler) filterData = filterData.filter(({ duration }) => duration <= 40);
       
       setFilmsShowed(filterData);
@@ -47,6 +51,7 @@ const SavedMovies = ({ openPopup }) => {
         localStorage.setItem('savedFilmsTumbler', tumbler);
         localStorage.setItem('savedFilmsInputSearch', inputSearch);
       } else {
+        localStorage.removeItem('InputText');
         localStorage.removeItem('savedFilms');
         localStorage.removeItem('savedFilmsTumbler');
         localStorage.removeItem('savedFilmsInputSearch');
@@ -70,16 +75,22 @@ const SavedMovies = ({ openPopup }) => {
       try {
         await mainApi.deleteMovies(film._id);
         const newFilms = await mainApi.getMovies();
-        setFilmsShowed(newFilms);
         setFilms(newFilms);
-        const InputSearchText = localStorage.getItem('inputText');
-        handleGetMovies(InputSearchText);
+        setFilmsShowed(newFilms);
+
       } catch (err) {
         openPopup('Ошибка удаления');
       }
+
+      // Попробуем найти прошлый запрос. Если есть запрос в прошлом - значит, остаемся на странице запроса.
+      //Если запроса нет - остаемся на главной странице без поиска.
+      const InputSearchText = localStorage.getItem('InputText');
+      if (InputSearchText) {
+        handleGetMovies(InputSearchText);
+        localStorage.removeItem('InputText');
+      }
     }
   }
-
 
   async function handleGetMoviesTumbler(tumbler) {
     let filterDataShowed = [];
@@ -95,8 +106,8 @@ const SavedMovies = ({ openPopup }) => {
       filterData = filmsWithTumbler;
     }
 
-    localStorage.setItem('films', JSON.stringify(filterDataShowed.concat(filterData)));
-    localStorage.setItem('filmsTumbler', tumbler);
+    // localStorage.setItem('films', JSON.stringify(filterDataShowed.concat(filterData)));
+    // localStorage.setItem('filmsTumbler', tumbler);
     setFilmsShowed(filterDataShowed);
     setFilms(filterData);
   }
