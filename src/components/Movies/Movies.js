@@ -93,7 +93,7 @@ const Movies = ({ openPopup }) => {
       setFilms([]);
       localStorage.removeItem('films');
       localStorage.removeItem('filmsTumbler');
-      //localStorage.removeItem('filmsInputSearch');
+      localStorage.removeItem('filmsInputSearch');
     } finally {
       setPreloader(false);
     }
@@ -129,7 +129,6 @@ const Movies = ({ openPopup }) => {
     localStorage.setItem('films', JSON.stringify(filterDataShowed.concat(filterData)));
     localStorage.setItem('filmsTumbler', tumbler);
     setFilmsShowed(filterDataShowed);
-
     setFilms(filterData);
   }
 
