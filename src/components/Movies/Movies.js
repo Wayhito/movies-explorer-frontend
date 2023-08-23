@@ -22,8 +22,8 @@ const Movies = ({ openPopup }) => {
     setMoviesCount(getMoviesCount());
     const handlerResize = () => setMoviesCount(getMoviesCount());
     window.addEventListener('resize', handlerResize);
-    //handleGetMovies();
 
+    //handleGetMovies();
     // const prevInput = localStorage.getItem('filmsInputSearch');
     // handleGetMovies(prevInput);
 
@@ -61,6 +61,7 @@ const Movies = ({ openPopup }) => {
   }
 
   async function handleGetMovies(inputSearch) {
+    
     setFilmsTumbler(false);
     localStorage.setItem('filmsTumbler', false);
 
@@ -86,6 +87,10 @@ const Movies = ({ openPopup }) => {
       setFilms(filterData);
       setFilmsShowedWithTumbler(spliceData);
       setFilmsWithTumbler(filterData);
+
+      localStorage.setItem('filmsShowedWithTumbler', JSON.stringify(spliceData));
+      localStorage.setItem('filmsWithTumbler', JSON.stringify(filterData));
+
     } catch (err) {
       setErrorText(
         'Во время запроса произошла ошибка.'
@@ -116,7 +121,7 @@ const Movies = ({ openPopup }) => {
   async function handleGetMoviesTumbler(tumbler) {
     let filterDataShowed = [];
     let filterData = [];
-
+    
     if (tumbler) {
       setFilmsShowedWithTumbler(filmsShowed);
       setFilmsWithTumbler(films);
@@ -177,6 +182,8 @@ const Movies = ({ openPopup }) => {
       });
 
     const localStorageFilms = localStorage.getItem('films');
+    setFilmsShowedWithTumbler(JSON.parse(localStorage.getItem('filmsShowedWithTumbler')));
+    setFilmsWithTumbler(JSON.parse(localStorage.getItem('filmsWithTumbler')));
 
     if (localStorageFilms) {
       const filterData = JSON.parse(localStorageFilms);
