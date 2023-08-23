@@ -1,5 +1,5 @@
 import '../Form/Form.css';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../images/logo.svg';
 import isEmail from 'validator/es/lib/isEmail';
@@ -29,6 +29,7 @@ function Login({ onLogin }) {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
+
     onLogin(inputValues);
   };
 

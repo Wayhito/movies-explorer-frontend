@@ -39,6 +39,7 @@ const Movies = ({ openPopup }) => {
       '1250': [12, 3],
       '700': [8, 2],
       '550': [5, 2],
+      '240': [5, 2],
     };
 
     Object.keys(MoviesCountConfig)
@@ -91,9 +92,9 @@ const Movies = ({ openPopup }) => {
       );
 
       setFilms([]);
-      localStorage.removeItem('films');
-      localStorage.removeItem('filmsTumbler');
-      localStorage.removeItem('filmsInputSearch');
+      //localStorage.removeItem('films');
+      //localStorage.removeItem('filmsTumbler');
+      //localStorage.removeItem('filmsInputSearch');
     } finally {
       setPreloader(false);
     }
