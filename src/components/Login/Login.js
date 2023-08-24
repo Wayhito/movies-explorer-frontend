@@ -1,5 +1,4 @@
 import '../Form/Form.css';
-import './Login.css';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../images/logo.svg';
@@ -17,7 +16,7 @@ function Login({ onLogin }) {
 
     if (name === 'email') {
       if (!isEmail(value)) {
-        target.setCustomValidity('Неверный адрес почты');
+        target.setCustomValidity('Некорректый адрес почты');
       } else {
         target.setCustomValidity('');
       }
