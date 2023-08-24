@@ -17,7 +17,7 @@ const SearchForm = ({ handleGetMovies, filmsTumbler, filmsInputSearch, handleGet
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    handleGetMovies(inputSearch);
+    handleGetMovies(inputSearch, tumbler);
   }
 
   useEffect(() => {

@@ -60,8 +60,7 @@ const Movies = ({ openPopup }) => {
     setFilms(spliceFilms);
   }
 
-  async function handleGetMovies(inputSearch) {
-    
+  async function handleGetMovies(inputSearch, tumbler) {
     setFilmsTumbler(false);
     localStorage.setItem('filmsTumbler', false);
 
@@ -88,8 +87,15 @@ const Movies = ({ openPopup }) => {
       setFilmsShowedWithTumbler(spliceData);
       setFilmsWithTumbler(filterData);
 
+      console.log(spliceData);
+      console.log(filterData);
+
       localStorage.setItem('filmsShowedWithTumbler', JSON.stringify(spliceData));
       localStorage.setItem('filmsWithTumbler', JSON.stringify(filterData));
+
+      if (tumbler) {
+        showShorts(spliceData, filterData, tumbler);
+      }
 
     } catch (err) {
       setErrorText(
@@ -103,6 +109,21 @@ const Movies = ({ openPopup }) => {
     } finally {
       setPreloader(false);
     }
+  }
+  
+  //Создадим дополнительную функцию, чтобы вызывать ее если производим поиск с уже включенным чекбоксом - Короткометражки
+  function showShorts(spliceFilmsData, filterFilmsData, tumbler) {
+    console.log(spliceFilmsData);
+    console.log(filterFilmsData);
+    // setFilmsShowedWithTumbler(filmsShowed);
+    // setFilmsWithTumbler(films);
+    const filterDataShowed = spliceFilmsData.filter(({ duration }) => duration <= 40);
+    const filterData = filterFilmsData.filter(({ duration }) => duration <= 40);
+
+    localStorage.setItem('films', JSON.stringify(filterDataShowed.concat(filterData)));
+    localStorage.setItem('filmsTumbler', tumbler);
+    setFilmsShowed(filterDataShowed);
+    setFilms(filterData);
   }
 
   //Добавлю дополнительную функцию, чтобы каждый раз не совершать запросы
@@ -119,6 +140,7 @@ const Movies = ({ openPopup }) => {
   }
 
   async function handleGetMoviesTumbler(tumbler) {
+    console.log('функция тамблера', tumbler);
     let filterDataShowed = [];
     let filterData = [];
     
